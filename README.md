@@ -22,3 +22,9 @@ Format: Image, latitude, longitude, gear, brake, throttle, steering angles and s
 * A small amount of training data from less than a hundred hours of driving was sufficient to train the car to operate in diverse conditions, on highways, local and residential roads in sunny, cloudy, and rainy conditions. 
 * The CNN is able to learn meaningful road features from a very sparse training signal (steering alone).
 * More work is needed to improve the robustness of the network, to find methods to verify the robustness, and to improve visualization of the network-internal processing steps.
+
+### Credits & Inspired By
+(1) https://github.com/SullyChen/Autopilot-TensorFlow<br>
+(2) Research paper: End to End Learning for Self-Driving Cars by Nvidia. [https://arxiv.org/pdf/1604.07316.pdf]<br>
+(3) Nvidia blog: https://devblogs.nvidia.com/deep-learning-self-driving-cars/ <br>
+(4) https://devblogs.nvidia.com/explaining-deep-learning-self-driving-car/
