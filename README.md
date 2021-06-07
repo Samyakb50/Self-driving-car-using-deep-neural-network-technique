@@ -10,7 +10,7 @@ Refer the [Self Driving Car Notebook](https://github.com/Samyakb50/Self-driving-
 * First we normalized input layer producing normalized input plane. Convolution layer which used 24 filters along with 5X5 kernel. 2nd Convolution layer which used 36 filters along with 5X5 kernel. 3rd Convolution layer which used 48 filters along with 5X5 kernel. 4th Convolution layer which uses 64 filters along with 5X5 kernel. We needed to flatten our data to 1D shape of 1152 (18X64). Final step is output node we use mean square error as error metric. We use elu activation function inspite of relu activation function 
 
 ### Why use elu Activation function
-* Gradient of relu function in negative region is zero. Backpropogation uses gradient value to change value of weight. Weight will not change.  So network refuse to learn or learn drastically slow.
+* Gradient of relu function in negative region is zero. Gradient tend to get smaller and smaller as we keep on moving backward. Backpropogation uses gradient value to change value of weight. Weight will not change.  So network refuse to learn or learn drastically slow. But elu activation give non zero value in negative region. It will decrease error. We always have change to learn and recover.
 
 ### Other Larger Datasets you can train on
 (1) Udacity: https://medium.com/udacity/open-sourcing-223gb-of-mountain-view-driving-data-f6b5593fbfa5<br>
