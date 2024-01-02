@@ -8,15 +8,30 @@ Refer the [Self Driving Car Notebook](https://github.com/Samyakb50/Self-driving-
 * The system is trained to automatically learn the internal representations of necessary processing steps, such as detecting useful road features, with only the human steering angle as the training signal. We do not need to explicitly trained it to detect, for example, the outline of roads.
 
 ### Nvidia Model
-* The architecture is a convolutional neural network (CNN) that uses 3 layers with 5x5 convolution and max pooling with 2x2 block and 2x2 downsizing, 3 layers with 3x3 convolution and max pooling with 2x2 block and no downsizing, flattening layer and 5 dense fully-connected layers. Mostly ReLU activation is used though last 3 layers use linear activation as it was providing better results. There is also one drop-out layer that similarly to max pooling reduces overfitting. 
+* First we normalized input layer producing normalized input plane. Convolution layer which used 24 filtersalong with 5X5 kernel. 2 nd Convolution layer which used 36 filters along with 5X5 kernel. 3 rd Convolution layer which used 48 filters along with 5X5 kernel. 4 th Convolution layerwhich uses 64 filters along with 5X5 kernel. We needed to flatten our data to 1D shape of 1152 (18X64). Final step is output node we use mean square error as error metric.We use elu activation function inspite of relu activation function.
 
 ### Why use elu Activation function
-* Gradient of relu function in negative region is zero. Gradient tend to get smaller and smaller as we keep on moving backward. Backpropogation uses gradient value to change value of weight. Weight will not change.  So network refuse to learn or learn drastically slow. But elu activation give non zero value in negative region. It will decrease error. We always have change to learn and recover.
+* When a node in neural network dies (give –ve value) relu activation function feed a value 0 to the node that follow it.In our model back propogation uses gradient value to change the weight value of the nodes. Since gradient value is zero then weight of the node never change. This means node always receive a negative input and always feed forward the value of zero without learning. If enough value dies then loss of model will remain stagnant &amp; never decrease. But elu gives non zero gradient value in –ve region.It has chance to recover &amp; fix its weight parameter to decrease its error .It always remain capable of learning and continuity to the model.
+
+### Data Augmentation
+* Process of creating new data image uses  existing dataset. It is done by applying transformation to  current set of image which results in brand new set of image increasing variety. Provide more variety and these customization augmentation techniquescan be combined to add variety to dataset.
+
+### Data Augmentation Techniques Applied
+* Zooming :-Zooming allow our model to get closer look at some of feature in image andimprove feature extraction. Affine deals explicitly with affine type transformations thatpreserve straight lines and plane with the object.
+* Pan- Horizontal and vertical transformation of image. Affine deals explicitly with affine type transformations that preserve straight lines and plane with the object.
+* Altering brightness :-Mutiplies all image inside the image with a specific value. If value less than 1 - darker . If value more than 1 - brighter .
+* Flipping :- Randomly flip image which help to balance our dataset. We applied horizontal flip.
 
 ### Training
 The training itself takes random batch of images from all three cameras and their corresponding steering values:
 
 Both left and right camera images adjust the steering angle value a bit - the assumption is that when the front camera sees an image similar to our training left/right image, its steering angle must be corrected as it would otherwise run into the risk of escaping the road. This however causes a tricky situation where car might be driving from left to right and back on straights due to this enforced steering intervention. From the experience, this tends to get better with more training epochs.
+
+![image](https://github.com/Samyakb50/Self-driving-car-using-deep-neural-network-technique/assets/35770724/996c7f0d-8d84-434c-b346-1e7095f19975)
+Car running on known track
+
+![image](https://github.com/Samyakb50/Self-driving-car-using-deep-neural-network-technique/assets/35770724/c2cb8d4d-891e-4ef3-ab5e-d41e156055ed)
+Car running on Unknown track
 
 ### Other Larger Datasets you can train on
 (1) Udacity: https://medium.com/udacity/open-sourcing-223gb-of-mountain-view-driving-data-f6b5593fbfa5<br>
