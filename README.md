@@ -28,9 +28,11 @@ The training itself takes random batch of images from all three cameras and thei
 Both left and right camera images adjust the steering angle value a bit - the assumption is that when the front camera sees an image similar to our training left/right image, its steering angle must be corrected as it would otherwise run into the risk of escaping the road. This however causes a tricky situation where car might be driving from left to right and back on straights due to this enforced steering intervention. From the experience, this tends to get better with more training epochs.
 
 ![image](https://github.com/Samyakb50/Self-driving-car-using-deep-neural-network-technique/assets/35770724/996c7f0d-8d84-434c-b346-1e7095f19975)
+
 Car running on known track
 
 ![image](https://github.com/Samyakb50/Self-driving-car-using-deep-neural-network-technique/assets/35770724/c2cb8d4d-891e-4ef3-ab5e-d41e156055ed)
+
 Car running on Unknown track
 
 ### Other Larger Datasets you can train on
